@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="answers.css">
+    <link rel="stylesheet" href="../assets/style.css">
+    <title>Réponses du questionnaire</title>
+</head>
+<body>
+    <div class="container">
+        <div id="title-div" class="card-content">
+            <h1 class="title-l center">Réponses du questionnaire</h1>
+            <span id="response-count" class="body-m">Nombre de réponses : Impossible de récupérer le nombre de réponses total.</span>
+
+            <div class="export-options center">
+                <button class="btn-primary" onclick="exportCSV()">Exportation format CSV</button>
+                <button class="btn-primary" onclick="exportPDF()">Exportation format PDF</button>
+                <button class="btn-primary" onclick="exportPDF()">Exportation format PDF</button>
+            </div>
+        </div>
+        <div id="response-summary" class="card-content-grey">
+            <div id="response-list">
+                <!-- Liste des réponses -->
+            </div>
+        </div>
+    </div>
+    <script src="answers.js"></script>
+</body>
+</html>
