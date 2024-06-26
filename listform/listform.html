@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="listform.css">
+    <title>Liste des Formulaires</title>
+</head>
+<body>
+    <div class="top-banner">
+        <h2 class="title-s">Menu</h2>
+        <button id="create-form" class="btn-primary">Créer un formulaire</button>
+        <button id="logout" class="btn-secondary">Se déconnecter</button>
+    </div>
+    <div class="container">
+        <div class="card-content-grey">
+            <div class="card-content">
+                <h2 class="title-l center">Liste des Formulaires</h2>
+            </div>
+
+            <div class="card-content">
+                <div id="form-list-container" class="card-content-grey">
+                    <ul id="form-list" class="form-list"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/is-connected.js"></script>
+    <script src="listform.js"></script>
+</body>
+</html>
