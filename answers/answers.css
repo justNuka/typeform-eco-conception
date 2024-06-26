@@ -44,3 +44,21 @@
 .btn-primary{
     margin-top: 15px;
 }
+.response-bar-container {
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    height: 20px;
+    margin-top: 5px;
+}
+
+.response-bar {
+    background-color: #76c7c0;
+    height: 100%;
+    text-align: right;
+    padding-right: 5px;
+    color: white;
+    line-height: 20px; /* Align text vertically */
+    white-space: nowrap; /* Prevent text wrapping */
+}
