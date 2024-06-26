@@ -96,13 +96,6 @@ h1 {
 .input {
     background-color: white;
     color: #a050ea;
-    display: flex;
-    border-color: #a050ea;
-    flex-direction: column;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
 }
 
 .input:focus {
