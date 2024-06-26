@@ -26,6 +26,16 @@ body {
     cursor: pointer;
     font-family: inherit;
 }
+
+.btn-primary:hover {
+    background-color: #6d2a96;
+}
+
+.btn-primary:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
   
 /* Styles pour le bouton secondaire */
 .btn-secondary {
@@ -39,6 +49,17 @@ body {
     font-family: inherit;
 }
 
+.btn-secondary:hover {
+    background-color: #6d2a96;
+    color: white;
+}
+
+.btn-secondary:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
+
 /* Styles pour l'input non cliqué */
 .input {
     background-color: #f4d4fc;
@@ -46,7 +67,7 @@ body {
     border-radius: 8px;
     padding: 10px 20px;
     font-size: 16px;
-    width: 200px;
+    width: auto;
     color: #a050ea;
 }
 
@@ -57,7 +78,7 @@ body {
     border-radius: 8px;
     padding: 10px 20px;
     font-size: 16px;
-    width: 200px;
+    width: auto;
     color: #a050ea;
     outline: none;
 }

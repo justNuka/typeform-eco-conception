@@ -1,0 +1,115 @@
+
+h1 {
+    text-align: center;
+    color: #4A4A4A;
+    font-family: 'Poppins', sans-serif;
+    font-size: 42px;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.form-header,
+.form-header textarea {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#addQuestionBtn,
+#validateFormBtn {
+    display: block;
+    margin-top: 10px;
+}
+
+
+.question {
+    background: #F3E5F5;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.question-title,
+.option-input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.question-type {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.options-container {
+    margin-bottom: 10px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.option-input {
+    flex-grow: 1;
+}
+
+.remove-option {
+    background: #E53935;
+    color: white;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.add-option,
+.remove-question {
+    display: block;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.remove-question {
+    background: #D32F2F;
+    color: white;
+}
+
+.remove-option:hover,
+.remove-question:hover {
+    background: #a32323;
+}
+
+.required::after {
+    content: "*";
+    color: red;
+}
+
+.input {
+    background-color: white;
+    color: #a050ea;
+    display: flex;
+    border-color: #a050ea;
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input:focus {
+    background-color: white;
+    border: 2px solid #a050ea;
+    font-size: 16px;
+    color: #a050ea;
+    outline: none;
+   
+}
