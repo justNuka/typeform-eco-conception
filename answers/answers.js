@@ -1,6 +1,6 @@
-// const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMiIsInVzZXJuYW1lIjoidGVzdDIiLCJpYXQiOjE3MTkzOTAzMzgsImV4cCI6MTcxOTM5MzkzOH0.ESzuixadPwCgGf4Eay5yGwsUAwZ8tFDAUzFvc2LUaP8';
+jwt = localStorage.getItem('jwt');
 document.addEventListener('DOMContentLoaded', () => {
-    const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMiIsInVzZXJuYW1lIjoidGVzdDIiLCJpYXQiOjE3MTkzOTAzMzgsImV4cCI6MTcxOTM5MzkzOH0.ESzuixadPwCgGf4Eay5yGwsUAwZ8tFDAUzFvc2LUaP8'; // Remplacez par votre token JWT
+    const TOKEN = jwt;
 
     fetch('https://typeformapi.leod1.fr/forms/1', {
         method: 'GET',
@@ -150,4 +150,8 @@ function exportCSV() {
 
 function exportPDF() {
     // Logique pour exporter en PDF
+}
+
+function exportXLSX() {
+    // Logique pour exporter en XLSX
 }
