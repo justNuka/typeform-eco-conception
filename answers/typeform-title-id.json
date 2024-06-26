@@ -1,0 +1,75 @@
+[
+    {
+        "id_form": 1,
+        "title": "Test form",
+        "content": [
+            {
+                "id": 1,
+                "intitule": "Question 1",
+                "Description": "Question choix unique",
+                "reponses": [
+                    {"id": 1, "text": "Réponse X"},
+                    {"id": 2, "text": "Réponse Y"},
+                    {"id": 3, "text": "Réponse Z"}
+                ],
+                "type": "unique",
+                "answers": [
+                    {
+                        "id_user": 1,
+                        "value": [1]
+                    },
+                    {
+                        "id_user": 2,
+                        "value": [3]
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "intitule": "Question 2",
+                "Description": "Question choix multiple",
+                "reponses": [
+                    {"id": 4, "text": "Réponse A"},
+                    {"id": 5, "text": "Réponse B"},
+                    {"id": 6, "text": "Réponse C"}
+                ],
+                "type": "multiple",
+                "answers": [
+                    {
+                        "id_user": 1,
+                        "value": [2,3]
+                    },
+                    {
+                        "id_user": 2,
+                        "value": [1]
+                    },
+                    {
+                        "id_user": 2,
+                        "value": [1, 2, 3]
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "intitule": "Question 3",
+                "Description": "Question libre",
+                "reponses": [],
+                "type": "freeText",
+                "answers": [
+                    {
+                        "id_user": 1,
+                        "value": "Réponse libre 1"
+                    },
+                    {
+                        "id_user": 2,
+                        "value": "Réponse libre 2"
+                    },
+                    {
+                        "id_user": 2,
+                        "value": "Réponse libre 3"
+                    }
+                ]
+            }
+        ]
+    }
+]
