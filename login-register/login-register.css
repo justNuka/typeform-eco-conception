@@ -58,3 +58,6 @@ body {
 .body-xs{
     margin-top: 15px;
 }
+input{
+    width: auto !important;
+}

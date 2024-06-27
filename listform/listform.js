@@ -55,6 +55,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function displayForms(forms) {
         console.log('Displaying forms:', forms);
+
+        // Vérifier si aucun formulaire n'a été trouvé
+        if (forms.length === 0 || forms.every(form => !form)) {
+            const noFormsMessage = document.createElement('p');
+            noFormsMessage.textContent = "Aucun formulaire n'a été trouvé pour votre profil.";
+            noFormsMessage.classList.add('body-m');
+            formList.appendChild(noFormsMessage);
+            return;
+        }
+
         forms.forEach(form => {
             if (form) {
                 console.log('Processing form:', form);
