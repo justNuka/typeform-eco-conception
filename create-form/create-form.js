@@ -3,33 +3,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const addQuestionBtn = document.getElementById('addQuestionBtn');
     const validateFormBtn = document.getElementById('validateFormBtn');
     const questionTemplate = document.getElementById('questionTemplate').content;
+    const formTitleInput = document.getElementById('formTitle');
 
     addQuestionBtn.addEventListener('click', () => {
         const newQuestion = document.importNode(questionTemplate, true);
         questionsContainer.appendChild(newQuestion);
         addEventListeners(questionsContainer.lastElementChild);
+        checkFormValidity();
     });
 
     validateFormBtn.addEventListener('click', () => {
-        if (!validateForm()) {
-            return;
-        }
-        const formTitle = document.getElementById('formTitle').value;
+        const formTitle = formTitleInput.value;
         const questions = document.querySelectorAll('.question');
         
         const formObject = {
-            form_id: "0",
             form_title: formTitle,
             questions: [],
-            responses: []
         };
 
-        questions.forEach((questionElement, index) => {
+        questions.forEach((questionElement) => {
             const questionTitle = questionElement.querySelector('.question-title').value;
             const questionType = questionElement.querySelector('.question-type').value;
             const options = questionElement.querySelectorAll('.option');
             const questionObject = {
-                question_id: (index + 1).toString(),
                 question_type: questionType === 'text' ? 'free_text' : (questionType === 'single' ? 'single_choice' : 'multiple_choice'),
                 question_text: questionTitle,
                 options: [],
@@ -41,32 +37,63 @@ document.addEventListener('DOMContentLoaded', () => {
                 const optionInput = option.querySelector('.option-input').value;
                 const correctAnswerInput = option.querySelector('.correct-answer');
 
-                questionObject.options.push(optionInput);
-                
-                if (correctAnswerInput.type === 'checkbox' && correctAnswerInput.checked) {
-                    questionObject.correct_answers.push(optionInput);
-                } else if (correctAnswerInput.type === 'radio' && correctAnswerInput.checked) {
-                    questionObject.correct_answer = optionInput;
+                if (optionInput) {
+                    questionObject.options.push(optionInput);
+                    
+                    if (correctAnswerInput.type === 'checkbox' && correctAnswerInput.checked) {
+                        questionObject.correct_answers.push(optionInput);
+                    } else if (correctAnswerInput.type === 'radio' && correctAnswerInput.checked) {
+                        questionObject.correct_answer = optionInput;
+                    }
                 }
             });
 
             formObject.questions.push(questionObject);
         });
-        console.log(JSON.stringify(formObject, null, 2));
+
+        const TOKEN = localStorage.getItem('jwt');
+        fetch('https://typeformapi.leod1.fr/forms', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${TOKEN}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formObject)
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(err => { throw err; });
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Formulaire créé avec succès:', data);
+        })
+        .catch(error => {
+            console.error('Une erreur est survenue pendant la récupération des données:', error);
+            alert('Erreur lors de la création du formulaire: ' + error.message);
+        });
+
+        //console.log(JSON.stringify(formObject, null, 2));
     });
+
+    formTitleInput.addEventListener('input', checkFormValidity);
 
     function addEventListeners(questionElement) {
         const removeQuestionBtn = questionElement.querySelector('.remove-question');
         const addOptionBtn = questionElement.querySelector('.add-option');
         const optionsContainer = questionElement.querySelector('.options-container');
         const questionTypeSelect = questionElement.querySelector('.question-type');
+        const inputs = questionElement.querySelectorAll('input, select');
 
         removeQuestionBtn.addEventListener('click', () => {
             questionElement.remove();
+            checkFormValidity();
         });
 
         addOptionBtn.addEventListener('click', () => {
             addOption(questionElement, questionTypeSelect.value);
+            checkFormValidity();
         });
 
         questionTypeSelect.addEventListener('change', () => {
@@ -80,12 +107,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 optionsContainer.appendChild(addOptionBtn);
                 addOption(questionElement, questionType);
             }
+            checkFormValidity();
+        });
+
+        inputs.forEach(input => {
+            input.addEventListener('input', checkFormValidity);
         });
 
         const existingOptions = questionElement.querySelectorAll('.option .remove-option');
         existingOptions.forEach(option => {
             option.addEventListener('click', (event) => {
                 event.target.closest('.option').remove();
+                checkFormValidity();
             });
         });
     }
@@ -101,13 +134,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const radioInputs = optionsContainer.querySelectorAll('input[type="radio"]');
             radioInputs.forEach(input => input.name = uniqueName);
             optionTemplate.innerHTML = `
-                <input type="radio" class="correct-answer input" disabled>
+                <input type="radio" class="correct-answer input" name="${uniqueName}">
                 <input type="text" class="option-input input" placeholder="Nouvelle option">
                 <button class="remove-option">X</button>
             `;
         } else if (questionType === 'multiple') {
             optionTemplate.innerHTML = `
-                <input type="checkbox" class="correct-answer input" disabled>
+                <input type="checkbox" class="correct-answer input">
                 <input type="text" class="option-input input" placeholder="Nouvelle option">
                 <button class="remove-option">X</button>
             `;
@@ -116,18 +149,21 @@ document.addEventListener('DOMContentLoaded', () => {
         optionsContainer.insertBefore(optionTemplate, addOptionBtn);
         optionTemplate.querySelector('.remove-option').addEventListener('click', () => {
             optionTemplate.remove();
+            checkFormValidity();
+        });
+        optionTemplate.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', checkFormValidity);
         });
     }
+
     function validateForm() {
-        const formTitle = document.getElementById('formTitle').value.trim();
+        const formTitle = formTitleInput.value.trim();
         if (formTitle === '') {
-            alert("Veuillez saisir un titre pour le formulaire.");
             return false;
         }
     
         const questions = document.querySelectorAll('.question');
         if (questions.length === 0) {
-            alert("Veuillez ajouter au moins une question.");
             return false;
         }
     
@@ -136,25 +172,16 @@ document.addEventListener('DOMContentLoaded', () => {
         questions.forEach((questionElement, index) => {
             const questionTitle = questionElement.querySelector('.question-title').value.trim();
             if (questionTitle === '') {
-                alert(`La question ${index + 1} n'a pas de titre.`);
                 isValid = false;
                 return;
             }
     
             const questionType = questionElement.querySelector('.question-type').value;
             const options = questionElement.querySelectorAll('.option');
-            let hasCorrectAnswer = false;
     
             options.forEach(option => {
                 const optionInput = option.querySelector('.option-input').value.trim();
-                const correctAnswerInput = option.querySelector('.correct-answer');
-    
-                if (optionInput !== '') {
-                    if (correctAnswerInput.checked) {
-                        hasCorrectAnswer = true;
-                    }
-                } else {
-                    alert(`La question ${index + 1} a un titre d'option vide.`);
+                if (optionInput === '') {
                     isValid = false;
                     return;
                 }
@@ -163,5 +190,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
         return isValid;
     }
-    
+
+    function checkFormValidity() {
+        const isValid = validateForm();
+        validateFormBtn.disabled = !isValid;
+    }
+
+    checkFormValidity();
 });

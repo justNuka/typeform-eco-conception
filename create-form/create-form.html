@@ -16,13 +16,13 @@
         </div>
         <div id="questionsContainer"></div>
         <button id="addQuestionBtn" class="btn-secondary">Ajouter une question</button>
-        <button id="validateFormBtn" class="btn-primary">Valider le formulaire</button>
+        <button id="validateFormBtn" class="btn-primary submitButton" disabled>Valider le formulaire</button>
     </div>
 
     <template id="questionTemplate">
         <div class="question">
             <input type="text" class="question-title input" placeholder="Titre de la question">
-            <select class="question-type input">
+            <select class="question-type">
                 <option value="multiple">Choix multiple</option>
                 <option value="single">Réponse unique</option>
                 <option value="text">Texte libre</option>
