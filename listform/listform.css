@@ -53,3 +53,8 @@ a {
 .btn-primary{
     margin-right: 15px;
 }
+.card-content-title{
+    padding: 10px 0 10px 0;
+    display: flex;
+    justify-content: center;
+}
