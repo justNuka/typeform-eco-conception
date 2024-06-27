@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+html {
+    height: 100%;
+}
+
+/* Couleurs gradient : 0% E8BFFF - 60% : 7B2CBF */
+body {
+    font-family: 'Archivo', sans-serif;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #E8BFFF 0%, #7B2CBF 60%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Styles pour le bouton primaire */
+.btn-primary {
+    background-color: #a050ea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.btn-primary:hover {
+    background-color: #6d2a96;
+}
+
+.btn-primary:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
+  
+/* Styles pour le bouton secondaire */
+.btn-secondary {
+    background-color: #d8a8f0;
+    color: #6d2a96;
+    border: 2px solid #6d2a96;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.btn-secondary:hover {
+    background-color: #6d2a96;
+    color: white;
+}
+
+.btn-secondary:disabled {
+    background-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+/* Styles pour l'input non cliqué */
+.input {
+    background-color: #f4d4fc;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    width: auto;
+    color: #a050ea;
+}
+
+/* Styles pour l'input en focus */
+.input:focus {
+    background-color: #f4d4fc;
+    border: 2px solid #a050ea;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    width: auto;
+    color: #a050ea;
+    outline: none;
+}
+
+.title-l{
+    font-family: 'Poppins', sans-serif;
+    font-size: 42px;
+    font-weight: normal;
+}
+.title-s{
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    font-weight: normal;
+}
+.body-m{
+    font-size: 20px;
+}
+.body-s{
+    font-size: 18px;
+}
+.body-xs{
+    font-size: 16px;
+}
+.card-content{
+    background-color: white;
+    border-radius: 8px;
+    padding: 55px 77px;
+    margin: 55px 160px;
+}

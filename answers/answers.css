@@ -1,0 +1,60 @@
+.response-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.response-item p {
+    margin: 5px 0;
+}
+
+/* New styles for response elements */
+.response-list {
+    list-style-type: none;
+    padding: 0;
+}
+.response-summary{
+    margin-bottom: 30px;
+}
+
+.response-list-item {
+    background-color: #f4f4f4;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 4px;
+}
+.center{
+    text-align: center;
+}
+.body-m{
+    font-size: 28px !important;
+}
+.card-content-grey{
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    padding: 15px 27px;
+    margin: 55px 160px;
+}
+.btn-primary{
+    margin-top: 15px;
+}
+.response-bar-container {
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    height: 20px;
+    margin-top: 5px;
+}
+
+.response-bar {
+    background-color: #76c7c0;
+    height: 100%;
+    text-align: right;
+    padding-right: 5px;
+    color: white;
+    line-height: 20px; /* Align text vertically */
+    white-space: nowrap; /* Prevent text wrapping */
+}

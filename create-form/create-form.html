@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Création d'un formulaire</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="create-form.css">
+</head>
+<body>
+    <div class="card-content">
+        <h1 class="title-l">Création d'un formulaire</h1>
+        <div class="form-header">
+            <input type="text" id="formTitle" placeholder="Titre du formulaire" class="input">
+            <textarea id="formDescription" placeholder="Description du formulaire" class="input"></textarea>
+        </div>
+        <div id="questionsContainer"></div>
+        <button id="addQuestionBtn" class="btn-secondary">Ajouter une question</button>
+        <button id="validateFormBtn" class="btn-primary submitButton" disabled>Valider le formulaire</button>
+    </div>
+
+    <template id="questionTemplate">
+        <div class="question">
+            <input type="text" class="question-title input" placeholder="Titre de la question">
+            <select class="question-type">
+                <option value="multiple">Choix multiple</option>
+                <option value="single">Réponse unique</option>
+                <option value="text">Texte libre</option>
+            </select>
+            <div class="options-container">
+                <div class="option">
+                    <input type="checkbox" class="correct-answer input" disabled>
+                    <input type="text" class="option-input input" placeholder="Option 1">
+                    <button class="remove-option">X</button>
+                </div>
+                <button class="add-option btn-secondary">Ajouter une option</button>
+            </div>
+            <button class="remove-question btn-secondary">Supprimer la question</button>
+        </div>
+    </template>
+
+    <script src="create-form.js"></script>
+</body>
+</html>
