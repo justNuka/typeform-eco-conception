@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Ajouter des gestionnaires d'événements pour les boutons
     document.getElementById('create-form').addEventListener('click', () => {
-        window.location.href = '../create-form/createform.html';
+        window.location.href = '../create-form/create-form.html';
     });
 
     document.getElementById('logout').addEventListener('click', () => {

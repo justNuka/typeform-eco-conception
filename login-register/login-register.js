@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Stocker le token JWT pour une utilisation ultérieure
             localStorage.setItem('jwt', data.accessToken);
             // Redirection ou autre traitement après connexion réussie
-            window.location.href = '../listform/listform.html';
+            window.location.href = '../list-form/list-form.html';
         })
         .catch(error => {
             console.error('Erreur:', error);

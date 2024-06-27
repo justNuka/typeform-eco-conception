@@ -67,7 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            console.log('Formulaire créé avec succès:', data);
+            //console.log('Formulaire créé avec succès:', data);
+            window.location.href = '../list-form/list-form.html';
         })
         .catch(error => {
             console.error('Une erreur est survenue pendant la récupération des données:', error);
