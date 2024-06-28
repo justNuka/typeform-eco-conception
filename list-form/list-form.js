@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
     .then(response => {
-        console.log('Response status:', response.status);
         if (!response.ok) {
             throw new Error('Erreur lors de la récupération des IDs de formulaires');
         }
@@ -54,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayForms(forms) {
-        console.log('Displaying forms:', forms);
 
         // Vérifier si aucun formulaire n'a été trouvé
         if (forms.length === 0 || forms.every(form => !form)) {
@@ -83,8 +81,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 const responseLength = form.responses ? form.responses.length : 0;
                 responseCount.textContent = `Nombre de réponses : ${responseLength}`;
 
+                // Création du bouton pour copier le lien
+                const copyLinkButton = document.createElement('button');
+                copyLinkButton.textContent = 'Copier le lien pour répondre';
+                copyLinkButton.classList.add('btn-primary');
+                copyLinkButton.addEventListener('click', () => {
+                    const formLink = `https://typeform.leod1.fr/form/form.html?id_form=${form.form_id}`;
+                    navigator.clipboard.writeText(formLink).then(() => {
+                        console.log('Lien copié:', formLink);
+                    }).catch(err => {
+                        console.error('Erreur lors de la copie du lien:', err);
+                    });
+                });
+
+                const buttonContainer = document.createElement('div');
+                buttonContainer.classList.add('button-container');
+                buttonContainer.appendChild(copyLinkButton);
+
                 listItem.appendChild(formTitle);
                 listItem.appendChild(responseCount);
+                listItem.appendChild(buttonContainer);
                 formList.appendChild(listItem);
             }
         });

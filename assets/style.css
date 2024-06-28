@@ -63,11 +63,11 @@ body {
 /* Styles pour l'input non cliqué */
 .input {
     background-color: #f4d4fc;
-    border: none;
+    border: 2px solid #f4d4fc;
     border-radius: 8px;
     padding: 10px 20px;
     font-size: 16px;
-    width: auto;
+    width: 350px;    
     color: #a050ea;
 }
 
@@ -96,11 +96,17 @@ body {
 .body-m{
     font-size: 20px;
 }
+
+.body-accent-m {
+    font-size: 18px;
+    font-weight: 700;
+}
+
 .body-s{
     font-size: 18px;
 }
 .body-xs{
-    font-size: 16px;
+    font-size: 14px;
 }
 .card-content{
     background-color: white;

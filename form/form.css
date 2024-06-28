@@ -1,0 +1,29 @@
+p {
+    margin: 0;
+}
+
+input:hover {
+    cursor: pointer;
+}
+
+.item {
+    display: grid;
+    margin-bottom: 45px;
+}
+
+
+.div-radio {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.question {
+    color: #7B2CBF;
+    margin-bottom: 15px;
+}
+
+.description {
+    color: #a8a8a8;
+    margin: 8px 0px 16px 0px;
+}
