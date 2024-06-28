@@ -60,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            alert('Inscription réussie ! Vous pouvez maintenant vous connecter.');
             console.log('Nouvel utilisateur:', data);
             registerForm.reset();
             registerForm.classList.remove('active');
@@ -68,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Erreur:', error);
-            alert('Erreur lors de l\'inscription');
         });
     });
 
@@ -95,8 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            alert('Connexion réussie !');
-            console.log("Data: ", data);
             // Stocker le token JWT pour une utilisation ultérieure
             localStorage.setItem('jwt', data.accessToken);
             // Redirection ou autre traitement après connexion réussie
@@ -104,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Erreur:', error);
-            alert('Erreur lors de la connexion');
         });
     });
 });

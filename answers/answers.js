@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return response.json();
     })
     .then(data => {
+        formTitle = data.form_title;
         displayResponses(data);
     })
     .catch(error => {
@@ -114,48 +115,51 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
-
-    function exportCSV() {
-        fetch(`https://typeformapi.leod1.fr/forms/${formId}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${TOKEN}`
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            let csvContent = "data:text/csv;charset=utf-8,";
-            if (data.questions && data.questions.length > 0) {
-                data.questions.forEach(question => {
-                    csvContent += `${question.question_text},`;
-                });
-                csvContent += "\n";
-
-                if (data.responses && data.responses.length > 0) {
-                    data.responses.forEach(response => {
-                        response.answers.forEach(answer => {
-                            csvContent += `${answer.answer},`;
-                        });
-                        csvContent += "\n";
-                    });
-                }
-            }
-
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "responses.csv");
-            document.body.appendChild(link);
-            link.click();
-        })
-        .catch(error => console.error('Erreur lors de l\'exportation en CSV:', error));
-    }
-
-    function exportPDF() {
-        // Logique pour exporter en PDF
-    }
-
-    function exportXLSX() {
-        // Logique pour exporter en XLSX
-    }
 });
+function exportCSV() {
+    const TOKEN = localStorage.getItem('jwt');
+    const urlParams = new URLSearchParams(window.location.search);
+    const formId = urlParams.get('formId');
+
+    fetch(`https://typeformapi.leod1.fr/forms/${formId}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${TOKEN}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        let csvContent = "data:text/csv;charset=utf-8,";
+        if (data.questions && data.questions.length > 0) {
+            data.questions.forEach(question => {
+                csvContent += `${question.question_text},`;
+            });
+            csvContent += "\n";
+
+            if (data.responses && data.responses.length > 0) {
+                data.responses.forEach(response => {
+                    response.answers.forEach(answer => {
+                        csvContent += `${answer.answer},`;
+                    });
+                    csvContent += "\n";
+                });
+            }
+        }
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", `reponses_du_formulaire_${formTitle}.csv`);
+        document.body.appendChild(link);
+        link.click();
+    })
+    .catch(error => console.error('Erreur lors de l\'exportation en CSV:', error));
+}
+
+function exportPDF() {
+    // Logique pour exporter en PDF
+}
+
+function exportXLSX() {
+    // Logique pour exporter en XLSX
+}

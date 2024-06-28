@@ -6,11 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const formId = getFormIdFromUrl();
   if (!formId) {
-    console.error("ID du formulaire manquant dans l'URL");
     return;
-  }
-  else{
-    console.log("ID du formulaire:", formId);
   }
 
   fetch(`https://typeformapi.leod1.fr/forms/${formId}`, {
@@ -27,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((error) => {
       console.error(
-        "Une erreur est survenue pendant la récupération des données:",
         error
       );
     });
@@ -120,14 +115,10 @@ document.getElementById("content").addEventListener("submit", function (event) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get("id_form");
   }
-  
+
   const formId = getFormIdFromUrl();
   if (!formId) {
-    console.error("ID du formulaire manquant dans l'URL");
     return;
-  }
-  else{
-    console.log("ID du formulaire 2e doc:", formId);
   }
 
   fetch(`https://typeformapi.leod1.fr/forms/${formId}/responses`, {
@@ -144,7 +135,6 @@ document.getElementById("content").addEventListener("submit", function (event) {
       return response.json();
     })
     .then((data) => {
-      console.log("Réponse enregistrée avec succès:", data);
       const redirectUrl = `${window.location.origin}/login-register/login-register.html`;
       window.location.href = redirectUrl;
     })

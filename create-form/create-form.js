@@ -67,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(data => {
-            //console.log('Formulaire créé avec succès:', data);
             window.location.href = '../list-form/list-form.html';
         })
         .catch(error => {
@@ -75,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Erreur lors de la création du formulaire: ' + error.message);
         });
 
-        //console.log(JSON.stringify(formObject, null, 2));
     });
 
     formTitleInput.addEventListener('input', checkFormValidity);
