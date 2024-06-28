@@ -1,6 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const TOKEN = localStorage.getItem("jwt");
-    
+document.addEventListener("DOMContentLoaded", () => {    
     function getFormIdFromUrl() {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get('id_form');
@@ -12,11 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
     
-  fetch("https://typeformapi.leod1.fr/forms/${formId}", {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${TOKEN}`,
-    },
+  fetch(`https://typeformapi.leod1.fr/forms/${formId}`, {
+    method: "GET"
   })
     .then((response) => {
       if (!response.ok) {
