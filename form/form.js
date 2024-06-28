@@ -1,17 +1,17 @@
-document.addEventListener("DOMContentLoaded", () => {    
-    function getFormIdFromUrl() {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('id_form');
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  function getFormIdFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get("id_form");
+  }
 
-    const formId = getFormIdFromUrl();
-    if (!formId) {
-        console.error("ID du formulaire manquant dans l'URL");
-        return;
-    }
-    
+  const formId = getFormIdFromUrl();
+  if (!formId) {
+    console.error("ID du formulaire manquant dans l'URL");
+    return;
+  }
+
   fetch(`https://typeformapi.leod1.fr/forms/${formId}`, {
-    method: "GET"
+    method: "GET",
   })
     .then((response) => {
       if (!response.ok) {
@@ -84,57 +84,54 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.getElementById("content").addEventListener("submit", function (event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    const formData = new FormData(this);
-    const results = [];
+  const formData = new FormData(this);
+  const results = [];
 
-    formData.forEach((value, key) => {
-        const [prefix, questionId] = key.split('_');
-        const existingAnswer = results.find(result => result.question_id === questionId);
+  formData.forEach((value, key) => {
+    const [prefix, questionId] = key.split("_");
+    const existingAnswer = results.find(
+      (result) => result.question_id === questionId
+    );
 
-        if (existingAnswer) {
-            if (Array.isArray(existingAnswer.answer)) {
-                existingAnswer.answer.push(value);
-            } else {
-                existingAnswer.answer = [existingAnswer.answer, value];
-            }
-        } else {
-            results.push({
-                question_id: questionId,
-                answer: value
-            });
-        }
-    });
+    if (existingAnswer) {
+      if (Array.isArray(existingAnswer.answer)) {
+        existingAnswer.answer.push(value);
+      } else {
+        existingAnswer.answer = [existingAnswer.answer, value];
+      }
+    } else {
+      results.push({
+        question_id: questionId,
+        answer: value,
+      });
+    }
+  });
 
-    const dataToSend = {
-        responses: results
-    };
+  const dataToSend = {
+    responses: results,
+  };
 
-    console.log(dataToSend);
-
-    const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMiIsInVzZXJuYW1lIjoidGVzdDIiLCJpYXQiOjE3MTkzOTAzMzgsImV4cCI6MTcxOTM5MzkzOH0.ESzuixadPwCgGf4Eay5yGwsUAwZ8tFDAUzFvc2LUaP8';
-
-    fetch('https://typeformapi.leod1.fr/forms/1/responses', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${TOKEN}`
-        },
-        body: JSON.stringify(dataToSend)
+  fetch(`https://typeformapi.leod1.fr/forms/${formId}/responses`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(dataToSend),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Erreur lors de l'envoi des données");
+      }
+      return response.json();
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erreur lors de l\'envoi des données');
-        }
-        return response.json();
+    .then((data) => {
+      console.log("Réponse enregistrée avec succès:", data);
+      const redirectUrl = `${window.location.origin}/login-register/login-register.html`;
+      window.location.href = redirectUrl;
     })
-    .then(data => {
-        console.log('Réponse enregistrée avec succès:', data);
-        const redirectUrl = `${window.location.origin}/login-register/login-register.html`;
-        window.location.href = redirectUrl;
-    })
-    .catch(error => {
-        console.error('Une erreur est survenue:', error);
+    .catch((error) => {
+      console.error("Une erreur est survenue:", error);
     });
 });
