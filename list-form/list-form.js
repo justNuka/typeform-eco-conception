@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 copyLinkButton.textContent = 'Copier le lien pour répondre';
                 copyLinkButton.classList.add('btn-primary');
                 copyLinkButton.addEventListener('click', () => {
-                    const formLink = `http://localhost:3000/form/form.html?id_form=${form.form_id}`;
+                    const formLink = `https://typeform.leod1.fr/form/form.html?id_form=${form.form_id}`;
                     navigator.clipboard.writeText(formLink).then(() => {
                         console.log('Lien copié:', formLink);
                     }).catch(err => {
