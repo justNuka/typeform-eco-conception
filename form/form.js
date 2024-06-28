@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("ID du formulaire manquant dans l'URL");
     return;
   }
+  else{
+    console.log("ID du formulaire:", formId);
+  }
 
   fetch(`https://typeformapi.leod1.fr/forms/${formId}`, {
     method: "GET",
@@ -112,6 +115,20 @@ document.getElementById("content").addEventListener("submit", function (event) {
   const dataToSend = {
     responses: results,
   };
+
+  function getFormIdFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get("id_form");
+  }
+  
+  const formId = getFormIdFromUrl();
+  if (!formId) {
+    console.error("ID du formulaire manquant dans l'URL");
+    return;
+  }
+  else{
+    console.log("ID du formulaire 2e doc:", formId);
+  }
 
   fetch(`https://typeformapi.leod1.fr/forms/${formId}/responses`, {
     method: "POST",
